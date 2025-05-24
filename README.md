@@ -37,8 +37,8 @@ El jugador humano y el dealer reciben dos cartas inicialmente. El objetivo es ac
 
 2. Compila y ejecuta (ejemplo con `javac` y `java`):
     ```bash
-    javac Main.java
-    java Main
+    javac game.Main.java
+    java game.Main
     ```
 
 ---
