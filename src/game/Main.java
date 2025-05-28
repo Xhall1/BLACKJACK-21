@@ -2,6 +2,7 @@ package game;
 
 import card.Baraja;
 import card.Carta;
+import historialJugadas.Pila;
 
 /** Este main es solo para las prueba de la lista enlazada, la idea es que se haga toda la lógica en este archivo
  * y tengamos todo aquí.
@@ -50,6 +51,8 @@ public class Main {
         // Mostrar el título del juego
         mostrarTitulo();
 
+        Pila historial = new Pila();
+
         Baraja baraja = new Baraja();
         baraja.inicializarBaraja();
         baraja.mezclarBaraja(); // Mezclar la baraja
@@ -63,6 +66,7 @@ public class Main {
         System.out.println("🤞 Robando una carta...");
         retraso(1500); // Añadir un retraso para simular suspenso
         Carta cartaRobada1 = baraja.robarCarta();
+        historial.apilar(cartaRobada1);
         System.out.println("✨ Has robado la siguiente carta:");
         imprimirCarta(cartaRobada1); // Imprime la carta en formato ASCII
         System.out.println("Cartas restantes en la baraja: " + baraja.getTamaño());
@@ -73,6 +77,7 @@ public class Main {
         System.out.println("🤞 Robando otra carta...");
         retraso(1500);
         Carta cartaRobada2 = baraja.robarCarta();
+        historial.apilar(cartaRobada2);
         System.out.println("✨ Has robado la siguiente carta:");
         imprimirCarta(cartaRobada2); // Imprime la carta en formato ASCII
         System.out.println("Cartas restantes en la baraja: " + baraja.getTamaño());
@@ -81,5 +86,7 @@ public class Main {
 
         // Mensaje final
         System.out.println("🎉 ¡Gracias por jugar! Regresa pronto. 🎉");
+
+        historial.mostrarPila();
     }
 }
