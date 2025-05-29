@@ -1,6 +1,6 @@
-package src.historialJugadas;
+package historialJugadas;
 
-import src.card.Carta;
+import card.Carta;
 
 public class Nodo {
 

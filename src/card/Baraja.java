@@ -1,4 +1,4 @@
-package src.card;
+package card;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -86,4 +86,6 @@ public class Baraja {
     public int getTamaño() {
         return tamaño;
     }
+
+    
 }

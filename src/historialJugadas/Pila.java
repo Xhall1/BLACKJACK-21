@@ -1,8 +1,8 @@
-package src.historialJugadas;
+package historialJugadas;
 
-import src.card.Carta;
-import src.game.Main;
-import src.card.Nodo;
+import card.Carta;
+import game.Main;
+import card.Nodo;
 
 public class Pila {
     private Nodo inicio;
@@ -38,10 +38,10 @@ public class Pila {
 
     public void mostrarPila(){
         Nodo aux = inicio;
-        System.out.println("Estas son las cartas que se jugaron:");
+        Main app = new Main();
         while(aux != null){
-            Main.imprimirCarta(aux.getCarta());
-            Main.separarSeccion();
+            app.imprimirCarta(aux.getCarta());
+            app.separarSeccion();
             aux = aux.getSiguiente(); // CORREGIDO
         }
     }

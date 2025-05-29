@@ -1,4 +1,4 @@
-package src.card;
+package card;
 
 // Representa una carta en el mazo
 public class Carta {
