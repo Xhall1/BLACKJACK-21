@@ -1,29 +1,39 @@
 package card;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import src.utils.Nodo;
+import src.utils.ListaEnlazada;
+import src.utils.UtilMatematicas;
 
-// Clase de la baraja como lista enlazada simple
+/**
+ * Clase de la baraja implementada como lista enlazada simple
+ * Utiliza nuestras propias estructuras de datos sin dependencias de Java
+ * Collections
+ */
 public class Baraja {
-    private Nodo cabeza; // Primer nodo en la lista la cuál dará el inicio de la baraja
+    private Nodo<Carta> cabeza; // Primer nodo en la lista la cuál dará el inicio de la baraja
     private int tamaño; // Cantidad total de cartas en la baraja
 
+    /**
+     * Constructor que inicializa una baraja vacía
+     */
     public Baraja() {
         this.cabeza = null;
         this.tamaño = 0;
     }
 
-    // Inicializa la baraja estándar con 52 cartas
+    /**
+     * Inicializa la baraja estándar con 52 cartas
+     * Crea una baraja inglesa completa con 4 palos y 13 valores por palo
+     */
     public void inicializarBaraja() {
         // Palos disponibles
-        String[] palos = {"♠", "♥", "♦", "♣"};
+        String[] palos = { "♠", "♥", "♦", "♣" };
 
         // Valores de las cartas
-        String[] valores = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
+        String[] valores = { "A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K" };
 
         // Puntuación asociada a cada valor
-        int[] puntos = {11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10};
+        int[] puntos = { 11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10 };
 
         for (String palo : palos) {
             for (int i = 0; i < valores.length; i++) {
@@ -32,13 +42,17 @@ public class Baraja {
         }
     }
 
-    // Agregar una carta al final de la lista enlazada
+    /**
+     * Agregar una carta al final de la lista enlazada
+     * 
+     * @param carta la carta a agregar a la baraja
+     */
     public void agregarCarta(Carta carta) {
-        Nodo nuevoNodo = new Nodo(carta);
+        Nodo<Carta> nuevoNodo = new Nodo<>(carta);
         if (cabeza == null) {
-            cabeza = nuevoNodo; // Si no hay cartas, entonces  el nuevo nodo es la cabeza
+            cabeza = nuevoNodo; // Si no hay cartas, entonces el nuevo nodo es la cabeza
         } else {
-            Nodo actual = cabeza; // Recorre hasta el último nodo
+            Nodo<Carta> actual = cabeza; // Recorre hasta el último nodo
             while (actual.getSiguiente() != null) {
                 actual = actual.getSiguiente();
             }
@@ -47,11 +61,16 @@ public class Baraja {
         tamaño++; // Incrementar el tamaño de la baraja
     }
 
-    // Robar la primera carta de la baraja
+    /**
+     * Robar la primera carta de la baraja
+     * 
+     * @return la carta robada o null si la baraja está vacía
+     */
     public Carta robarCarta() {
-        if (cabeza == null) return null; // Si la baraja está vacía, este va a devolver null
+        if (cabeza == null)
+            return null; // Si la baraja está vacía, este va a devolver null
         // Obtener la carta del primer nodo
-        Carta cartaRobada = cabeza.getCarta();
+        Carta cartaRobada = cabeza.getDato();
 
         // Mueve la cabeza al siguiente nodo
         cabeza = cabeza.getSiguiente();
@@ -61,28 +80,40 @@ public class Baraja {
         return cartaRobada; // Devuelve la carta robada
     }
 
-    // Mezclar el mazo
+    /**
+     * Mezcla el mazo usando algoritmo propio sin Collections.shuffle()
+     * Utiliza nuestra implementación de algoritmos matemáticos
+     */
     public void mezclarBaraja() {
-        List<Carta> cartas = new ArrayList<>();
+        ListaEnlazada<Carta> cartas = new ListaEnlazada<>();
         while (tamaño > 0) { // Vaciar la baraja en una lista temporal
-            cartas.add(robarCarta());
+            cartas.agregar(robarCarta());
         }
-        Collections.shuffle(cartas); // Mezclar las cartas
-        for (Carta carta : cartas) { // Volver a añadir las cartas al mazo
-            agregarCarta(carta);
+        UtilMatematicas.mezclar(cartas); // Mezclar las cartas usando nuestro algoritmo
+
+        // Volver a añadir las cartas al mazo usando iterador
+        ListaEnlazada.IteradorLista<Carta> iterador = cartas.iterador();
+        while (iterador.tieneProximo()) {
+            agregarCarta(iterador.proximo());
         }
     }
 
-    // Mostrar todas las cartas restantes en la baraja
+    /**
+     * Mostrar todas las cartas restantes en la baraja
+     */
     public void mostrarBaraja() {
-        Nodo actual = cabeza;
+        Nodo<Carta> actual = cabeza;
         while (actual != null) {
-            System.out.println(actual.getCarta()); // Imprimir la carta actual
+            System.out.println(actual.getDato()); // Imprimir la carta actual
             actual = actual.getSiguiente(); // Avanzar al siguiente nodo
         }
     }
 
-    // Aquí se obtendrá el tamaño actual de la baraja
+    /**
+     * Obtener el tamaño actual de la baraja
+     * 
+     * @return el número de cartas restantes en la baraja
+     */
     public int getTamaño() {
         return tamaño;
     }
