@@ -31,7 +31,7 @@ public class Main {
     }
 
     // Metodo para imprimir una carta con ASCII Art
-    public void imprimirCarta(Carta carta) {
+    public static void imprimirCarta(Carta carta) {
         String valor = carta.getValor(); // Valor de la carta (A, 2, 3, K, etc.)
         String palo = carta.getPalo(); // Palo de la carta (♥, ♦, ♣, ♠)
 
