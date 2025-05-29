@@ -57,7 +57,7 @@ public class DemoBlackjack {
         // Mostrar cartas iniciales
         System.out.println(ana.toString());
         System.out.println("Dealer tiene:");
-        System.out.println("  " + dealer.getMano().get(0).toString());
+        System.out.println("  " + dealer.getMano().obtener(0).toString());
         System.out.println("  [Carta oculta]");
 
         Main.separarSeccion();

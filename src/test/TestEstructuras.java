@@ -7,6 +7,7 @@ import src.historialJugadas.Pila;
 import src.jugadores.ControladorJugadores;
 import src.jugadores.EstadoJugador;
 import src.turnos.Cola;
+import src.utils.ListaEnlazada;
 
 /**
  * Clase para probar todas las estructuras de datos implementadas
@@ -153,7 +154,9 @@ public class TestEstructuras {
 
         // Mostrar todos los jugadores
         System.out.println("\nTodos los jugadores:");
-        for (String nombre : controlador.obtenerNombresJugadores()) {
+        ListaEnlazada<String> nombres = controlador.obtenerNombresJugadores();
+        for (int i = 0; i < nombres.tamaño(); i++) {
+            String nombre = nombres.obtener(i);
             System.out.println("  - " + nombre);
         }
 

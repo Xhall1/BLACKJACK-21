@@ -1,71 +1,92 @@
 package src.jugadores;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import src.utils.TablaHash;
+import src.utils.ListaEnlazada;
 
 /**
- * Tabla Hash para controlar el estado de todos los jugadores
+ * Controlador de jugadores usando implementación propia de Tabla Hash
  * Permite acceso rápido O(1) a la información de cada jugador
+ * Reemplaza HashMap de Java con nuestra implementación personalizada
  */
 public class ControladorJugadores {
-    private Map<String, EstadoJugador> jugadores;
+    private TablaHash<String, EstadoJugador> jugadores;
 
+    /**
+     * Constructor que inicializa la tabla hash de jugadores
+     */
     public ControladorJugadores() {
-        this.jugadores = new HashMap<>();
+        this.jugadores = new TablaHash<>();
     }
 
     /**
      * Agregar un nuevo jugador al controlador
+     * 
+     * @param nombre el nombre del jugador a agregar
      */
     public void agregarJugador(String nombre) {
-        if (!jugadores.containsKey(nombre)) {
-            jugadores.put(nombre, new EstadoJugador(nombre));
+        if (!jugadores.contieneClave(nombre)) {
+            jugadores.poner(nombre, new EstadoJugador(nombre));
         }
     }
 
     /**
      * Obtener el estado de un jugador
+     * 
+     * @param nombre el nombre del jugador
+     * @return el estado del jugador o null si no existe
      */
     public EstadoJugador obtenerJugador(String nombre) {
-        return jugadores.get(nombre);
+        return jugadores.obtener(nombre);
     }
 
     /**
      * Verificar si un jugador existe
+     * 
+     * @param nombre el nombre del jugador a verificar
+     * @return true si el jugador existe, false en caso contrario
      */
     public boolean existeJugador(String nombre) {
-        return jugadores.containsKey(nombre);
+        return jugadores.contieneClave(nombre);
     }
 
     /**
      * Remover un jugador del controlador
+     * 
+     * @param nombre el nombre del jugador a remover
+     * @return true si se removió exitosamente, false si no existía
      */
     public boolean removerJugador(String nombre) {
-        return jugadores.remove(nombre) != null;
+        return jugadores.remover(nombre) != null;
     }
 
     /**
      * Obtener la lista de nombres de todos los jugadores
+     * 
+     * @return una ListaEnlazada con todos los nombres de jugadores
      */
-    public Set<String> obtenerNombresJugadores() {
-        return jugadores.keySet();
+    public ListaEnlazada<String> obtenerNombresJugadores() {
+        return jugadores.obtenerClaves();
     }
 
     /**
      * Reiniciar la partida para todos los jugadores
      */
     public void reiniciarPartidaTodos() {
-        for (EstadoJugador jugador : jugadores.values()) {
+        ListaEnlazada<EstadoJugador> valores = jugadores.obtenerValores();
+        ListaEnlazada.IteradorLista<EstadoJugador> iterador = valores.iterador();
+        while (iterador.tieneProximo()) {
+            EstadoJugador jugador = iterador.proximo();
             jugador.reiniciarPartida();
         }
     }
 
     /**
      * Obtener el número total de jugadores
+     * 
+     * @return el número de jugadores registrados
      */
     public int getNumeroJugadores() {
-        return jugadores.size();
+        return jugadores.tamaño();
     }
 
     /**
@@ -73,7 +94,10 @@ public class ControladorJugadores {
      */
     public void mostrarEstadisticas() {
         System.out.println("\n=== ESTADÍSTICAS DE JUGADORES ===");
-        for (EstadoJugador jugador : jugadores.values()) {
+        ListaEnlazada<EstadoJugador> valores = jugadores.obtenerValores();
+        ListaEnlazada.IteradorLista<EstadoJugador> iterador = valores.iterador();
+        while (iterador.tieneProximo()) {
+            EstadoJugador jugador = iterador.proximo();
             System.out.printf("%s: %d/%d victorias (%.1f%%)\n",
                     jugador.getNombre(),
                     jugador.getPartidasGanadas(),
@@ -88,7 +112,10 @@ public class ControladorJugadores {
      */
     public void mostrarEstadoActual() {
         System.out.println("\n=== ESTADO ACTUAL DE JUGADORES ===");
-        for (EstadoJugador jugador : jugadores.values()) {
+        ListaEnlazada<EstadoJugador> valores = jugadores.obtenerValores();
+        ListaEnlazada.IteradorLista<EstadoJugador> iterador = valores.iterador();
+        while (iterador.tieneProximo()) {
+            EstadoJugador jugador = iterador.proximo();
             System.out.println(jugador.toString());
             System.out.println();
         }
@@ -97,9 +124,14 @@ public class ControladorJugadores {
 
     /**
      * Verificar si todos los jugadores han terminado su turno
+     * 
+     * @return true si todos han terminado, false en caso contrario
      */
     public boolean todosHanTerminado() {
-        for (EstadoJugador jugador : jugadores.values()) {
+        ListaEnlazada<EstadoJugador> valores = jugadores.obtenerValores();
+        ListaEnlazada.IteradorLista<EstadoJugador> iterador = valores.iterador();
+        while (iterador.tieneProximo()) {
+            EstadoJugador jugador = iterador.proximo();
             if (!jugador.seHaPlantado() && !jugador.seHaPasado()) {
                 return false;
             }
@@ -111,13 +143,18 @@ public class ControladorJugadores {
      * Obtener el ganador de la partida
      * 
      * @param puntajeDealer Puntaje del dealer
+     * @param dealerSePaso  Si el dealer se pasó de 21
      * @return Nombre del ganador o null si hay empate
      */
     public String determinarGanador(int puntajeDealer, boolean dealerSePaso) {
         String mejorJugador = null;
         int mejorPuntaje = 0;
 
-        for (EstadoJugador jugador : jugadores.values()) {
+        ListaEnlazada<EstadoJugador> valores = jugadores.obtenerValores();
+        ListaEnlazada.IteradorLista<EstadoJugador> iterador = valores.iterador();
+        while (iterador.tieneProximo()) {
+            EstadoJugador jugador = iterador.proximo();
+
             // Saltar jugadores que se pasaron
             if (jugador.seHaPasado()) {
                 continue;

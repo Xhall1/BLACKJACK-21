@@ -7,6 +7,7 @@ import src.historialJugadas.Pila;
 import src.jugadores.ControladorJugadores;
 import src.jugadores.EstadoJugador;
 import src.turnos.Cola;
+import src.utils.ListaEnlazada;
 import java.util.Scanner;
 
 /**
@@ -117,11 +118,13 @@ public class BlackjackEngine {
      * Reparte 2 cartas iniciales a cada jugador
      */
     private void repartirCartasIniciales() {
-        for (String nombreJugador : controlador.obtenerNombresJugadores()) {
+        ListaEnlazada<String> nombres = controlador.obtenerNombresJugadores();
+        for (int i = 0; i < nombres.tamaño(); i++) {
+            String nombreJugador = nombres.obtener(i);
             EstadoJugador jugador = controlador.obtenerJugador(nombreJugador);
 
             // Repartir 2 cartas
-            for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 2; j++) {
                 Carta carta = baraja.robarCarta();
                 jugador.agregarCarta(carta);
                 historial.apilar(carta);
@@ -133,13 +136,15 @@ public class BlackjackEngine {
      * Muestra las cartas iniciales (carta oculta del dealer)
      */
     private void mostrarCartasIniciales() {
-        for (String nombreJugador : controlador.obtenerNombresJugadores()) {
+        ListaEnlazada<String> nombres = controlador.obtenerNombresJugadores();
+        for (int i = 0; i < nombres.tamaño(); i++) {
+            String nombreJugador = nombres.obtener(i);
             EstadoJugador jugador = controlador.obtenerJugador(nombreJugador);
 
             if (nombreJugador.equals("Dealer")) {
                 // Mostrar solo una carta del dealer
                 System.out.println("Dealer tiene:");
-                System.out.println("  " + jugador.getMano().get(0).toString());
+                System.out.println("  " + jugador.getMano().obtener(0).toString());
                 System.out.println("  [Carta oculta]");
             } else {
                 System.out.println(jugador.toString());
@@ -154,7 +159,9 @@ public class BlackjackEngine {
     private boolean verificarBlackjackNatural() {
         boolean hayBlackjack = false;
 
-        for (String nombreJugador : controlador.obtenerNombresJugadores()) {
+        ListaEnlazada<String> nombres = controlador.obtenerNombresJugadores();
+        for (int i = 0; i < nombres.tamaño(); i++) {
+            String nombreJugador = nombres.obtener(i);
             EstadoJugador jugador = controlador.obtenerJugador(nombreJugador);
             if (jugador.tieneBlackjack()) {
                 System.out.println("🎊 " + nombreJugador + " tiene BLACKJACK! 🎊");
@@ -177,7 +184,9 @@ public class BlackjackEngine {
     private void jugarTurnos() {
         // Crear nueva cola de turnos para esta partida
         Cola<String> turnosPartida = new Cola<>();
-        for (String nombre : controlador.obtenerNombresJugadores()) {
+        ListaEnlazada<String> nombres = controlador.obtenerNombresJugadores();
+        for (int i = 0; i < nombres.tamaño(); i++) {
+            String nombre = nombres.obtener(i);
             if (!nombre.equals("Dealer")) {
                 turnosPartida.encolar(nombre);
             }
@@ -283,7 +292,9 @@ public class BlackjackEngine {
         controlador.mostrarEstadoActual();
 
         // Determinar ganadores
-        for (String nombreJugador : controlador.obtenerNombresJugadores()) {
+        ListaEnlazada<String> nombres = controlador.obtenerNombresJugadores();
+        for (int i = 0; i < nombres.tamaño(); i++) {
+            String nombreJugador = nombres.obtener(i);
             if (nombreJugador.equals("Dealer"))
                 continue;
 
