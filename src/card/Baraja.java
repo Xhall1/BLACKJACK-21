@@ -1,12 +1,13 @@
 package src.card;
 
+import src.utils.Nodo;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 // Clase de la baraja como lista enlazada simple
 public class Baraja {
-    private Nodo cabeza; // Primer nodo en la lista la cuál dará el inicio de la baraja
+    private Nodo<Carta> cabeza; // Primer nodo en la lista la cuál dará el inicio de la baraja
     private int tamaño; // Cantidad total de cartas en la baraja
 
     public Baraja() {
@@ -17,13 +18,13 @@ public class Baraja {
     // Inicializa la baraja estándar con 52 cartas
     public void inicializarBaraja() {
         // Palos disponibles
-        String[] palos = {"♠", "♥", "♦", "♣"};
+        String[] palos = { "♠", "♥", "♦", "♣" };
 
         // Valores de las cartas
-        String[] valores = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
+        String[] valores = { "A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K" };
 
         // Puntuación asociada a cada valor
-        int[] puntos = {11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10};
+        int[] puntos = { 11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10 };
 
         for (String palo : palos) {
             for (int i = 0; i < valores.length; i++) {
@@ -34,11 +35,11 @@ public class Baraja {
 
     // Agregar una carta al final de la lista enlazada
     public void agregarCarta(Carta carta) {
-        Nodo nuevoNodo = new Nodo(carta);
+        Nodo<Carta> nuevoNodo = new Nodo<>(carta);
         if (cabeza == null) {
-            cabeza = nuevoNodo; // Si no hay cartas, entonces  el nuevo nodo es la cabeza
+            cabeza = nuevoNodo; // Si no hay cartas, entonces el nuevo nodo es la cabeza
         } else {
-            Nodo actual = cabeza; // Recorre hasta el último nodo
+            Nodo<Carta> actual = cabeza; // Recorre hasta el último nodo
             while (actual.getSiguiente() != null) {
                 actual = actual.getSiguiente();
             }
@@ -49,9 +50,10 @@ public class Baraja {
 
     // Robar la primera carta de la baraja
     public Carta robarCarta() {
-        if (cabeza == null) return null; // Si la baraja está vacía, este va a devolver null
+        if (cabeza == null)
+            return null; // Si la baraja está vacía, este va a devolver null
         // Obtener la carta del primer nodo
-        Carta cartaRobada = cabeza.getCarta();
+        Carta cartaRobada = cabeza.getDato();
 
         // Mueve la cabeza al siguiente nodo
         cabeza = cabeza.getSiguiente();
@@ -75,9 +77,9 @@ public class Baraja {
 
     // Mostrar todas las cartas restantes en la baraja
     public void mostrarBaraja() {
-        Nodo actual = cabeza;
+        Nodo<Carta> actual = cabeza;
         while (actual != null) {
-            System.out.println(actual.getCarta()); // Imprimir la carta actual
+            System.out.println(actual.getDato()); // Imprimir la carta actual
             actual = actual.getSiguiente(); // Avanzar al siguiente nodo
         }
     }

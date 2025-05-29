@@ -1,11 +1,10 @@
 package src.game;
 
-import src.card.Baraja;
 import src.card.Carta;
-import src.historialJugadas.Pila;
 
-/** Este main es solo para las prueba de la lista enlazada, la idea es que se haga toda la lógica en este archivo
- * y tengamos todo aquí.
+/**
+ * Clase principal para ejecutar el juego de Blackjack
+ * Incluye métodos utilitarios para la presentación del juego
  */
 
 public class Main {
@@ -13,7 +12,7 @@ public class Main {
     // Metodo para mostrar el título del juego de manera visual
     public static void mostrarTitulo() {
         System.out.println("=======================================");
-        System.out.println("          🎴 ¡Juego de Cartas! 🎴         ");
+        System.out.println("          🎴 BLACKJACK 21 🎴         ");
         System.out.println("=======================================\n");
     }
 
@@ -34,13 +33,13 @@ public class Main {
     // Metodo para imprimir una carta con ASCII Art
     public static void imprimirCarta(Carta carta) {
         String valor = carta.getValor(); // Valor de la carta (A, 2, 3, K, etc.)
-        String palo = carta.getPalo();   // Palo de la carta (♥, ♦, ♣, ♠)
+        String palo = carta.getPalo(); // Palo de la carta (♥, ♦, ♣, ♠)
 
         // Representación en ASCII Art
         System.out.println("+-----------+");
         System.out.printf("| %-2s        |\n", valor); // Valor en la esquina superior izquierda
         System.out.println("|           |");
-        System.out.printf("|     %s     |\n", palo);   // Palo en el centro
+        System.out.printf("|     %s     |\n", palo); // Palo en el centro
         System.out.println("|           |");
         System.out.printf("|        %-2s |\n", valor); // Valor en la esquina inferior derecha
         System.out.println("+-----------+");
@@ -48,45 +47,8 @@ public class Main {
 
     // Metodo principal del juego
     public static void main(String[] args) {
-        // Mostrar el título del juego
-        mostrarTitulo();
-
-        Pila historial = new Pila();
-
-        Baraja baraja = new Baraja();
-        baraja.inicializarBaraja();
-        baraja.mezclarBaraja(); // Mezclar la baraja
-
-        // Mensaje inicial
-        System.out.println("🃏 ¡Bienvenido al juego! Aquí está la baraja inicial mezclada:");
-
-        separarSeccion();
-
-        // Primera carta robada
-        System.out.println("🤞 Robando una carta...");
-        retraso(1500); // Añadir un retraso para simular suspenso
-        Carta cartaRobada1 = baraja.robarCarta();
-        historial.apilar(cartaRobada1);
-        System.out.println("✨ Has robado la siguiente carta:");
-        imprimirCarta(cartaRobada1); // Imprime la carta en formato ASCII
-        System.out.println("Cartas restantes en la baraja: " + baraja.getTamaño());
-
-        separarSeccion();
-
-        // Segunda carta robada
-        System.out.println("🤞 Robando otra carta...");
-        retraso(1500);
-        Carta cartaRobada2 = baraja.robarCarta();
-        historial.apilar(cartaRobada2);
-        System.out.println("✨ Has robado la siguiente carta:");
-        imprimirCarta(cartaRobada2); // Imprime la carta en formato ASCII
-        System.out.println("Cartas restantes en la baraja: " + baraja.getTamaño());
-
-        separarSeccion();
-
-        // Mensaje final
-        System.out.println("🎉 ¡Gracias por jugar! Regresa pronto. 🎉");
-
-        historial.mostrarPila();
+        // Crear y ejecutar el motor del juego
+        BlackjackEngine engine = new BlackjackEngine();
+        engine.iniciarJuego();
     }
 }
