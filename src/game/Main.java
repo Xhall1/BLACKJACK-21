@@ -1,8 +1,8 @@
-package game;
+package src.game;
 
-import card.Baraja;
-import card.Carta;
-import historialJugadas.Pila;
+import src.card.Baraja;
+import src.card.Carta;
+import src.historialJugadas.Pila;
 
 /** Este main es solo para las prueba de la lista enlazada, la idea es que se haga toda la lógica en este archivo
  * y tengamos todo aquí.

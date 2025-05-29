@@ -1,4 +1,4 @@
-package card;
+package src.card;
 
 // Esta clase representa un nodo en una lista enlazada
 public class Nodo {
