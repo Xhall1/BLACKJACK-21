@@ -1,4 +1,4 @@
-package dealer;
+package src.dealer;
 
 /**
  * Nodo del árbol binario de decisión

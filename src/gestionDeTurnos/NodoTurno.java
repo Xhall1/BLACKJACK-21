@@ -1,4 +1,4 @@
-package gestionDeTurnos;
+package src.gestionDeTurnos;
 
 public class NodoTurno {
     private String nombre; // Nombre del jugador (ej: "Jugador" o "Dealer")

@@ -1,13 +1,13 @@
-package game;
+package src.game;
 
-import card.Baraja;
-import card.Carta;
-import dealer.ArbolDecision;
-import historialJugadas.Pila;
-import jugadores.ControladorJugadores;
-import jugadores.EstadoJugador;
-import turnos.Cola;
-import utils.ListaEnlazada;
+import src.card.Baraja;
+import src.card.Carta;
+import src.dealer.ArbolDecision;
+import src.historialJugadas.Pila;
+import src.jugadores.ControladorJugadores;
+import src.jugadores.EstadoJugador;
+import src.turnos.Cola;
+import src.utils.ListaEnlazada;
 import java.util.Scanner;
 
 /**

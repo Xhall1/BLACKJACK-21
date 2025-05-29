@@ -1,6 +1,6 @@
-package jugadores;
+package src.jugadores;
 
-import historialJugadas.Pila;
+import src.historialJugadas.Pila;
 
 public class Jugador { // Clase jugador, toda la informacion del jugador
                        // Hace falta el estado del juego
@@ -11,7 +11,7 @@ public class Jugador { // Clase jugador, toda la informacion del jugador
     private int partidasGanadas;
     private boolean estadoJuego; // True para saber que esta jugando, false para saber que dejo de jugar
 
-    public Jugador(String nombre){
+    public Jugador(String nombre) {
         this.nombre = nombre;
         this.cartas = null;
         this.puntaje = 0;
@@ -22,7 +22,7 @@ public class Jugador { // Clase jugador, toda la informacion del jugador
     public Pila getCartas() {
         return cartas;
     }
-    
+
     public void setCartas(Pila cartas) {
         this.cartas = cartas;
     }
@@ -51,11 +51,11 @@ public class Jugador { // Clase jugador, toda la informacion del jugador
         this.puntaje = puntaje;
     }
 
-    public boolean getEstadoJuego(){
+    public boolean getEstadoJuego() {
         return estadoJuego;
     }
 
-    public void setEstadoJuego(boolean estadoJuego){
+    public void setEstadoJuego(boolean estadoJuego) {
         this.estadoJuego = estadoJuego;
     }
 

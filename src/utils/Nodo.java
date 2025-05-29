@@ -1,6 +1,6 @@
-package utils;
+package src.utils;
 
-import card.Carta;
+import src.card.Carta;
 
 /**
  * Nodo genérico que puede ser usado por todas las estructuras de datos

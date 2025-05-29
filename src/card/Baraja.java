@@ -1,8 +1,8 @@
-package card;
+package src.card;
 
-import utils.Nodo;
-import utils.ListaEnlazada;
-import utils.UtilMatematicas;
+import src.utils.Nodo;
+import src.utils.ListaEnlazada;
+import src.utils.UtilMatematicas;
 
 /**
  * Clase de la baraja implementada como lista enlazada simple

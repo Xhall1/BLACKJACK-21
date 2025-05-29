@@ -1,8 +1,8 @@
-package historialJugadas;
+package src.historialJugadas;
 
-import card.Carta;
-import game.Main;
-import utils.Nodo;
+import src.card.Carta;
+import src.game.Main;
+import src.utils.Nodo;
 
 public class Pila {
     private Nodo<Carta> inicio;

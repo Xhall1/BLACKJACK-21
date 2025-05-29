@@ -1,6 +1,6 @@
-package game;
+package src.game;
 
-import card.Carta;
+import src.card.Carta;
 
 /**
  * Clase principal para ejecutar el juego de Blackjack
