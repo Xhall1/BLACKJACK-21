@@ -1,6 +1,6 @@
 package game;
 
-import src.card.Carta;
+import card.Carta;
 
 /**
  * Clase principal para ejecutar el juego de Blackjack
@@ -10,19 +10,19 @@ import src.card.Carta;
 public class Main {
 
     // Metodo para mostrar el título del juego de manera visual
-    public void mostrarTitulo() {
+    public static void mostrarTitulo() {
         System.out.println("=======================================");
         System.out.println("          🎴 BLACKJACK 21 🎴         ");
         System.out.println("=======================================\n");
     }
 
     // Metodo para separar secciones en la consola
-    public void separarSeccion() {
+    public static void separarSeccion() {
         System.out.println("\n---------------------------------------\n");
     }
 
     // Metodo para agregar un retardo (simula animación)
-    public void retraso(int milisegundos) {
+    public static void retraso(int milisegundos) {
         try {
             Thread.sleep(milisegundos);
         } catch (InterruptedException e) {

@@ -1,4 +1,4 @@
-package src.utils;
+package utils;
 
 /**
  * Utilidades matemáticas y algoritmos personalizados

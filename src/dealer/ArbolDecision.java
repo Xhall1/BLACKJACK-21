@@ -1,4 +1,4 @@
-package src.dealer;
+package dealer;
 
 /**
  * Árbol binario de decisión para la lógica del dealer

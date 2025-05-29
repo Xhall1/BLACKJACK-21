@@ -1,4 +1,4 @@
-package src.gestionDeTurnos;
+package gestionDeTurnos;
 
 // Maneja la entrada y salida de un "Jugador" o "Dealer" para hacer los turnos
 public class ColaTurnos {

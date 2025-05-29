@@ -1,6 +1,6 @@
-package src.turnos;
+package turnos;
 
-import src.utils.Nodo;
+import utils.Nodo;
 
 /**
  * Cola (Queue) para gestionar los turnos en el juego de Blackjack

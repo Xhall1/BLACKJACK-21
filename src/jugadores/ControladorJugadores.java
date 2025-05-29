@@ -1,7 +1,7 @@
-package src.jugadores;
+package jugadores;
 
-import src.utils.TablaHash;
-import src.utils.ListaEnlazada;
+import utils.TablaHash;
+import utils.ListaEnlazada;
 
 /**
  * Controlador de jugadores usando implementación propia de Tabla Hash

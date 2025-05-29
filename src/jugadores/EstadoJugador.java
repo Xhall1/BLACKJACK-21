@@ -1,7 +1,7 @@
-package src.jugadores;
+package jugadores;
 
-import src.card.Carta;
-import src.utils.ListaEnlazada;
+import card.Carta;
+import utils.ListaEnlazada;
 
 /**
  * Representa el estado de un jugador en el juego de Blackjack

@@ -1,4 +1,4 @@
-package src.utils;
+package utils;
 
 /**
  * Implementación propia de Tabla Hash para reemplazar HashMap de Java

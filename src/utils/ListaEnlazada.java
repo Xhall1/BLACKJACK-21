@@ -1,4 +1,4 @@
-package src.utils;
+package utils;
 
 /**
  * Lista enlazada genérica para reemplazar ArrayList de Java

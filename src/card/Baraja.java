@@ -1,8 +1,8 @@
 package card;
 
-import src.utils.Nodo;
-import src.utils.ListaEnlazada;
-import src.utils.UtilMatematicas;
+import utils.Nodo;
+import utils.ListaEnlazada;
+import utils.UtilMatematicas;
 
 /**
  * Clase de la baraja implementada como lista enlazada simple
@@ -118,5 +118,4 @@ public class Baraja {
         return tamaño;
     }
 
-    
 }
